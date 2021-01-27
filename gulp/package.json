@@ -1,0 +1,25 @@
+{
+  "name": "gulp",
+  "version": "1.0.0",
+  "description": "Gulp workflow",
+  "author": "Marius Duboule",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "autoprefixer": "^9.6.0",
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-changed": "^4.0.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "gulp-imagemin": "^6.0.0"
+  },
+  "browserslist": [
+    "cover 95%",
+    "not dead"
+  ]
+}
