@@ -12,29 +12,28 @@ const sourcemaps = require('gulp-sourcemaps'),
     changed = require('gulp-changed'),
     replace = require('gulp-replace');
 
-const imgSrc =  'src/img/*',
-      imgDest = 'dist/img/';
+const imgSrc =  '../src/img/*',
+    imgDest = '../dist/img/';
 
 const files = {
-  htmlPath: '**/*.html',
-  scssPath: 'src/**/*.scss',
-  jsPath:   'src/**/*.js',
-  imgPath:  'src/img/*'
+  htmlPath: '../**/*.html',
+  scssPath: '../src/**/*.scss',
+  jsPath:   '../src/**/*.js',
+  imgPath:  '../src/img/*'
 }
 
-// Why is this necessary?
 const cssSrc =  [
-  'src/css/normalize.min.css',
-  'src/css/styles.css',
+  '../src/css/normalize.min.css',
+  '../src/css/style.css',
 ];
 
 function scssTask(){
-  return src('src/styles/main.scss')
+  return src('../src/styles/main.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([ autoprefixer(), cssnano() ]))
     .pipe(sourcemaps.write('.'))
-    .pipe(dest('src/css/')
+    .pipe(dest('../src/css/')
   );
 }
 
@@ -43,14 +42,14 @@ function concatCss() {
   .pipe(sourcemaps.init({loadMaps: true, largeFile: true}))
   .pipe(concat('style.min.css'))
   .pipe(sourcemaps.write('./maps/'))
-  .pipe(dest('dist/'));
+  .pipe(dest('../dist/'));
 }
 
 function jsTask(){
   return src([files.jsPath])
     .pipe(concat('all.js'))
     // .pipe(uglify())
-    .pipe(dest('dist/')
+    .pipe(dest('../dist/')
   );
 }
 
@@ -68,15 +67,15 @@ function imgMin() {
 var cbString = new Date().getTime();
 // Tricks the browser into reloading the js / css each time
 function cacheBustTask(){
-  return src(['index.html'])
+  return src(['../index.html'])
     .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
-    .pipe(dest('.'));
+    .pipe(dest('../'));
 }
 
 function watchTask() {
   browserSync.init({
     server: {
-      baseDir: "."
+      baseDir: "../"
     }
   });
   watch([files.htmlPath, files.scssPath, files.jsPath, files.imgPath],
